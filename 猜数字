@@ -1,0 +1,72 @@
+2024\03\13
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<windows.h>
+//猜数字小游戏
+void menu()
+{
+	printf("########################\n");
+	printf("####    1  start    ####\n");
+	printf("####    0  exit     ####\n");
+	printf("########################\n");
+}
+void game()
+{
+	//可尝试7次
+	int i = 0;
+
+	//先有个随机数
+	int ret = 0;
+	int guess = 0;
+	ret = rand() % 100 - 1;//1-100随机数
+	//printf("%d\n", ret);
+
+	//猜数字
+	for (i = 6; i >= 0; i--)//7次
+	{
+		printf("请输入所猜数字:>\n");
+		scanf("%d", &guess);
+
+		if (guess > ret)
+			printf("过大,你还有%d次机会\n", i);
+		else if (guess < ret)
+			printf("过小,你还有%d次机会\n", i);
+		else if (guess == ret)
+		{
+			printf("恭喜，猜对了\n");
+			break;
+		}
+	}
+}
+
+int main()
+{
+	int input;
+	srand((unsigned int)time(NULL));
+	do
+	{
+		printf("\n");
+		menu();
+		printf("请输入:>\n");
+		scanf("%d", &input);
+		switch (input)
+		{
+		case 0:
+			printf("退出游戏\n");
+			break;
+		case 1:
+			printf("请稍等\n");
+			Sleep(1000);
+			system("cls");
+			game();
+			Sleep(2000);
+			system("cls");
+			break;
+		default:
+			printf("请重试\n");
+			break;
+		}
+	} while (input);
+	return 0;
+}
